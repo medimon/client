@@ -1,14 +1,14 @@
-import * as React from "react";
+import * as React from "react"
 import {
   DataGrid,
   GridColDef,
   GridEventListener,
   GridValueGetterParams,
-} from "@mui/x-data-grid";
-import { Box } from "@mui/system";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Admin from "../models/Admin";
+} from "@mui/x-data-grid"
+import { Box } from "@mui/system"
+import { useNavigate } from "react-router-dom"
+import Header from "../components/Header"
+import AdminModel from "../models/Admin"
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -16,11 +16,11 @@ const columns: GridColDef[] = [
   { field: "prenom", headerName: "prenom", width: 130 },
   { field: "email", headerName: "email", width: 130 },
   { field: "role", headerName: "role", width: 130 },
-];
+]
 
 export default function DataTable() {
-  const [rows, setRows] = React.useState<Admin[]>([]);
-  const navigate = useNavigate();
+  const [rows, setRows] = React.useState<AdminModel[]>([])
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     // fetch("http://localhost:3000/branches")
@@ -53,8 +53,8 @@ export default function DataTable() {
         role: "admin",
         password: "doo",
       },
-    ]);
-  }, []);
+    ])
+  }, [])
 
   const handleEvent: GridEventListener<"rowClick"> = (
     params, // GridRowParams
@@ -63,9 +63,10 @@ export default function DataTable() {
   ) => {
     // alert(params.row.id);
     // alert(`Movie "${params.row.lastName}" clicked`);
-    navigate(params.row.id);
+    navigate(`${params.row.id}`)
+    // navigate("/")
     // console.log()
-  };
+  }
 
   return (
     <Box m="40px">
@@ -82,5 +83,5 @@ export default function DataTable() {
         />
       </div>
     </Box>
-  );
+  )
 }
