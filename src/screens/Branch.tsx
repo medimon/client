@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Header from "../components/Header";
 import BranchModel from "../models/Branch";
-import flags from "../flags";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -74,12 +73,25 @@ export default function Branch() {
           />
 
           <Controller
-            name="code"
+            name="legalForm"
             control={control}
             defaultValue=""
             render={({ field }) => (
               <TextField
-                label="Code"
+                label="Form juridique"
+                {...register("legalForm")}
+                error={!!formState.errors.legalForm}
+                helperText={formState.errors.legalForm?.message}
+              />
+            )}
+          />
+          <Controller
+            name="manager"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="Code dirigeant"
                 {...register("code")}
                 error={!!formState.errors.code}
                 helperText={formState.errors.code?.message}
@@ -165,6 +177,141 @@ export default function Branch() {
             error={!!formState.errors.location?.wilaya}
             helperText={formState.errors.location?.wilaya?.message}
           />
+          <Controller
+            name="location.city"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="ville"
+                {...register("location.city")}
+                error={!!formState.errors.location?.city}
+                helperText={formState.errors.location?.city?.message}
+              />
+            )}
+          />
+          <Controller
+            name="location.postalCode"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="Code postale"
+                {...register("location.postalCode")}
+                error={!!formState.errors.location?.postalCode}
+                helperText={formState.errors.location?.postalCode?.message}
+              />
+            )}
+          />
+          <Controller
+            name="location.address"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="Adresse"
+                {...register("location.address")}
+                error={!!formState.errors.location?.address}
+                helperText={formState.errors.location?.address?.message}
+              />
+            )}
+          />
+        </Box>
+        <Divider />
+        <Box
+          display="grid"
+          gap="40px"
+          gridTemplateColumns={{
+            sm: "repeat(1, 1fr)",
+            lg: "repeat(2, 1fr)",
+          }}
+          my={8}
+        >
+          <Controller
+            name="contact.mail"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="Email"
+                {...register("contact.mail")}
+                error={!!formState.errors.contact?.mail}
+                helperText={formState.errors.contact?.mail?.message}
+              />
+            )}
+          />
+          <Controller
+            name="contact.fax"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="Fax"
+                {...register("contact.fax")}
+                error={!!formState.errors.contact?.fax}
+                helperText={formState.errors.contact?.fax?.message}
+              />
+            )}
+          />
+          <Controller
+            name="contact.phone_1"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="telephone 1"
+                {...register("contact.phone_1")}
+                error={!!formState.errors.contact?.phone_1}
+                helperText={formState.errors.contact?.phone_1?.message}
+              />
+            )}
+          />
+          <Controller
+            name="contact.phone_2"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                label="telephone 2"
+                {...register("contact.phone_2")}
+                error={!!formState.errors.contact?.phone_2}
+                helperText={formState.errors.contact?.phone_2?.message}
+              />
+            )}
+          />
+        </Box>
+        <Divider />
+        <Box
+          display="grid"
+          gap="40px"
+          gridTemplateColumns={{
+            sm: "repeat(1, 1fr)",
+            lg: "repeat(2, 1fr)",
+          }}
+          my={8}
+        >
+          <Controller
+            name="date_0"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <DatePicker
+                label="date debut"
+                onChange={onChange}
+                value={dayjs(value)}
+              />
+            )}
+          ></Controller>
+          <Controller
+            name="date_1"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <DatePicker
+                label="date fin"
+                onChange={onChange}
+                value={dayjs(value)}
+              />
+            )}
+          ></Controller>
         </Box>
         {formState.isDirty && (
           <Box display="flex" justifyContent="end" mt="50px">

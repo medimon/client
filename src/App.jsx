@@ -1,11 +1,7 @@
 import Button from "@mui/material/Button";
 import React from "react";
-// import "./App.css";
-import logo from "./logo.svg";
-import PersistentDrawerLeft from "./sidebarold";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Branches from "./screens/Branches";
-import Units from "./screens/Units";
 import Societe from "./screens/Company";
 
 import { useState } from "react";
@@ -19,6 +15,14 @@ import Login from "./screens/Login";
 import Reset from "./screens/resetPassword";
 import Admins from "./screens/Admins";
 import Admin from "./screens/Admin";
+import Roles from "./screens/Roles";
+import Structure from "./screens/Structure";
+import Structures from "./screens/structures";
+import Emplois from "./screens/Emplois";
+import Emploi from "./screens/Emploi";
+import Poste from "./screens/Poste";
+import Postes from "./screens/Postes";
+import Types from "./screens/Types";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -33,6 +37,14 @@ function App() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
+              <Route path="/types" element={<Types />} />
+              <Route path="/postes/:id" element={<Poste />} />
+              <Route path="/postes" element={<Postes />} />
+              <Route path="/emplois/:id" element={<Emploi />} />
+              <Route path="/emplois" element={<Emplois />} />
+              <Route path="/structures/:id" element={<Structure />} />
+              <Route path="/structures" element={<Structures />} />
+              <Route path="/roles" element={<Roles />} />
               <Route path="/admins/:id" element={<Admin />} />
               <Route path="/admins" element={<Admins />} />
               <Route path="/signup" element={<Signup />} />
@@ -41,7 +53,6 @@ function App() {
               <Route path="/company" element={<Societe />} />
               <Route path="/branches/:id" element={<Branch />} />
               <Route path="/branches" element={<Branches />} />
-              <Route path="/units" element={<Units />} />
             </Routes>
           </main>
         </div>

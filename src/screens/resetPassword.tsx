@@ -15,7 +15,6 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 
 import CompanyModel from "../models/Company";
-import flags from "../flags";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Close, TimesOneMobiledata } from "@mui/icons-material";
 

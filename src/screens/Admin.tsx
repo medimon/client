@@ -7,42 +7,42 @@ import {
   FormControlLabel,
   Switch,
   TextField,
-} from "@mui/material"
-import { Box } from "@mui/system"
-import { useEffect } from "react"
-import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import Header from "../components/Header"
-import BranchModel from "../models/Branch"
-import flags from "../flags"
-import { DatePicker } from "@mui/x-date-pickers"
-import dayjs from "dayjs"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-import { Routes, Route, useParams } from "react-router-dom"
-import AdminModel from "../models/Admin"
+} from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect } from "react";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import Header from "../components/Header";
+import BranchModel from "../models/Branch";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Routes, Route, useParams } from "react-router-dom";
+import AdminModel from "../models/Admin";
 
 const schema = yup
   .object()
   .shape({
-    name: yup.string().required("rrrrrrrr"),
-    phone: yup
+    nom: yup.string().required("rrrrrrrr"),
+    prenom: yup
       .string()
-      .required("phone required")
+      .required("prenom required")
       .length(5, "should be 5 cars length"),
-    code: yup.number(),
+    email: yup.string().email(),
+    role: yup.string(),
     // date: yup.date("should bedate"),
   })
-  .required()
+  .required();
 
-const roles = ["Super admin", "Admin", "RH"]
+const roles = ["Admin", "RH", "Manager"];
 
 export default function Admin() {
-  const { id } = useParams()
+  const { id } = useParams();
   const { register, handleSubmit, watch, formState, reset, control } =
     useForm<AdminModel>({
       mode: "onChange",
-      // resolver: yupResolver(schema),
-    })
+      resolver: yupResolver(schema),
+    });
 
   useEffect(() => {
     // const response = fetch("http://localhost:3000/branches/4")
@@ -51,9 +51,9 @@ export default function Admin() {
     //   .catch((error) => console.log(error))
     // return () => {
     // }
-  }, [])
+  }, []);
 
-  const onSubmit: SubmitHandler<AdminModel> = (data) => console.log(">>", data)
+  const onSubmit: SubmitHandler<AdminModel> = (data) => console.log(">>", data);
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -126,14 +126,14 @@ export default function Admin() {
         {formState.isDirty && (
           <Box display="flex" justifyContent="end" mt="50px">
             <Button onClick={() => reset()} color="primary" variant="contained">
-              cancel
+              Annuler
             </Button>
             <Button type="submit" color="secondary" variant="contained">
-              save
+              sauvegarder
             </Button>
           </Box>
         )}
       </form>
     </Box>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Badge, BadgeMark, Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../theme";
@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import { BadgeOutlined, Business, Dashboard, Fingerprint, LocationOn, Style, StyleOutlined, Widgets, Work } from "@mui/icons-material";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -43,6 +44,7 @@ const Sidebar = () => {
 
   return (
     <Box
+    
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
@@ -124,14 +126,21 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> */}
-           
-            <Typography
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<Dashboard />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Societe 
+              Administrateurs 
             </Typography>
+            
             <Item
               title="Admins"
               to="/Admins"
@@ -140,27 +149,61 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
+              title="Roles et privileges"
+              to="/roles"
+              icon={<Fingerprint />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Votre organisation 
+            </Typography>
+            <Item
               title="societe"
               to="/company"
-              icon={<PeopleOutlinedIcon />}
+              icon={<Business />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Etablissements"
+              title="Sites"
               to="/branches"
-              icon={<ContactsOutlinedIcon />}
+              icon={<LocationOn />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="BUs"
-              to="/units"
-              icon={<ReceiptOutlinedIcon />}
+              title="Structures"
+              to="/structures"
+              icon={<Widgets />}
               selected={selected}
               setSelected={setSelected}
             />
-
+            <Item
+              title="Emplois"
+              to="/emplois"
+              icon={<Work />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Postes"
+              to="postes/"
+              icon={<BadgeOutlined/>}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Types"
+              to="types/"
+              icon={<StyleOutlined/>}
+              selected={selected}
+              setSelected={setSelected}
+            />
          </Box>
         </Menu>
       </ProSidebar>
